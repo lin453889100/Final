@@ -1,4 +1,5 @@
 
+
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
@@ -32,6 +33,7 @@ public class NavView extends JFrame{
         nVpanel.removeSplash();
         nVpanel.removeMain();
         nVpanel.removeInstruction();
+        nVpanel.removeCredit();
         nVpanel.addOptions(o_view);        
     }
     
@@ -40,6 +42,7 @@ public class NavView extends JFrame{
         nVpanel.removeSplash();
         nVpanel.removeOptions();
         nVpanel.removeInstruction();
+        nVpanel.removeCredit();
         nVpanel.addMain(m_view);        
     }
     public void switchToInstructionPanel(InstructionView i_view)
@@ -47,9 +50,18 @@ public class NavView extends JFrame{
         nVpanel.removeSplash();
         nVpanel.removeMain();
         nVpanel.removeOptions();
+        nVpanel.removeCredit();
         nVpanel.addInstruction(i_view);  
     }
     
+    public void switchToCreditPanel(CreditView c_view)
+    {
+        nVpanel.removeSplash();
+        nVpanel.removeMain();
+        nVpanel.removeOptions();
+        nVpanel.removeInstruction();
+        nVpanel.addCredit(c_view);
+    }
     
     public void addOptionsButtonListener(ActionListener al) 
     {    
@@ -64,7 +76,10 @@ public class NavView extends JFrame{
     {
         nVpanel.menu.instructionsButton.addActionListener(al);
     }
-    
+    public void addCreditButtonListener(ActionListener al)
+    {
+        nVpanel.menu.creditsButton.addActionListener(al);
+    }
     
     //TODO: Add listeners to switch to other Panels
     

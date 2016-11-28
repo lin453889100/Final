@@ -1,3 +1,4 @@
+
 /**
  *
  *  The Nav Controller handles logic to switch between Views
@@ -23,6 +24,10 @@ public class NavController {
     InstructionModel i_model;
     InstructionView i_view;
     InstructionController i_Controller;
+    
+    CreditModel c_model;
+    CreditView c_view;
+    CreditController c_Controller;
            
     // TODO: Create instances of your MainModel and MainController once you implement them
     MainView m_view;
@@ -39,12 +44,16 @@ public class NavController {
         i_view = new InstructionView(i_model);
         i_Controller = new InstructionController(i_model, i_view);
         
+        c_model = new CreditModel();
+        c_view = new CreditView(c_model);
+        c_Controller = new CreditController(c_model, c_view);
+        
         m_view = new MainView();
                 
         n_view.addOptionsButtonListener(new OptionsButtonListener());
         n_view.addInstructionButtonListener(new InstructionButtonListener());
         n_view.addMainButtonListener(new MainButtonListener());        
-        
+        n_view.addCreditButtonListener(new CreditButtonListener());
     }
     class OptionsButtonListener implements ActionListener {            
         public void actionPerformed(ActionEvent e)
@@ -67,6 +76,14 @@ public class NavController {
         public void actionPerformed(ActionEvent e)
         {
             n_view.switchToInstructionPanel(i_view);
+        }
+    }
+    
+    class CreditButtonListener implements ActionListener 
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            n_view.switchToCreditPanel(c_view);
         }
     }
     

@@ -1,4 +1,5 @@
 
+
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -14,6 +15,7 @@ public class NavViewPanel extends JPanel{
     OptionsView o_view;
     InstructionView i_view;
     MainView m_view;
+    CreditView c_view;
     
     public NavViewPanel() {
         super();
@@ -58,6 +60,14 @@ public class NavViewPanel extends JPanel{
         repaint();
     }
     
+    public void addCredit(CreditView c_view)
+    {
+        this.c_view = c_view;
+        add(c_view, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+    
     public void removeOptions()
     {
         if (this.o_view != null)
@@ -68,6 +78,12 @@ public class NavViewPanel extends JPanel{
     {
         if (this.i_view != null)
             remove(this.i_view);
+    }
+    
+    public void removeCredit()
+    {
+        if (this.c_view != null)
+            remove(this.c_view);
     }
     
     public void removeMain()
