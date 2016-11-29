@@ -17,10 +17,15 @@ public class OptionsView extends JPanel{
         JLabel EnterDiff;
         JSlider difficulty;
         JComboBox sex;
+        JLabel difficultyLabel;
+        JLabel playerNameLabel;
+        JLabel sexLabel;
+        
         
        
         
         OptionsModel o_model;
+        MainView m_view;
         
         OptionsView(OptionsModel o_model)
         {
@@ -42,36 +47,98 @@ public class OptionsView extends JPanel{
 
             
             
-            retButton = new JButton("Save and Return");
+            retButton = new JButton("Save");
+            playerNameLabel = new JLabel("Player name is empty");
+            difficultyLabel = new JLabel("Difficulty is not selected yet");
+            sexLabel = new JLabel("Sex is not selected yet");
+            
+            
 
             add(playerName);
             add(EnterDiff);
             add(difficulty);
             add(retButton);
             add(sex);
+            add(playerNameLabel);
+            add(difficultyLabel);
+            add(sexLabel);
+            
         } 
    
-            public void addButtonListener(ActionListener bl)
+            public void addButtonListener(ActionListener e)
             {    
-            retButton.addActionListener(bl);
+            this.retButton.addActionListener(e);
             
             }
             
-            String getplayerName()
+            public JTextField getplayerName()
             {
-            return playerName.getText();
+                return playerName;
             }
-            
-            int getDifficulty()
+            public void setplayerName(JTextField playername)
             {
-            return difficulty.getValue();
+                this.playerName = playerName;
             }
-            Object getSex()
+            
+            public JButton getretButton()
             {
-            return sex.getSelectedItem();
+                return retButton;
+            }
+            public void setretButton(JButton retButton)
+            {
+                this.retButton = retButton;
+            }
+            public JLabel getEnterDiff()
+            {
+                return EnterDiff;
+            }
+            public void setEnterDiff(JLabel EnterDiff)
+            {
+                this.EnterDiff = EnterDiff;
+            }
+            public JSlider getDifficulty()
+            {
+                return difficulty;
+            }
+            public void setDifficulty()
+            {
+                this.difficulty = difficulty;
+            }
+            public JComboBox getSex()
+            {
+                return sex;
+            }
+            public void setSex(JComboBox sex)
+            {
+                this.sex = sex;
             }
             
+            public JLabel getsexLabel()
+            {
+                return sexLabel;
+            }
+            public void setsexLabel(JLabel sexLabel)
+            {
+                this.sexLabel = sexLabel;
+            }
             
+            public JLabel getDifficultyLabel()
+            {
+                return difficultyLabel;
+            }
+            public void setDifficultyLabel(JLabel difficultyLabel)
+            {
+                this.difficultyLabel = difficultyLabel;
+            }
+            
+            public JLabel getplayerNameLabel()
+            {
+                return playerNameLabel;
+            }
+            public void setplayerNameLabel(JLabel playerNameLabel)
+            {
+                this.playerNameLabel = playerNameLabel;
+            }
            
         
 }

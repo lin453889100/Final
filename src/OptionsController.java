@@ -24,36 +24,12 @@ public class OptionsController {
         this.o_model = o_model;
         this.o_view = o_view;
 
-        o_view.addButtonListener(new ButtonListener());
+        
     }
-    class ButtonListener implements ActionListener
-        {
-            public void actionPerformed(ActionEvent e) 
-            {
-                String playerName = "";
-                int difficulty;
-                Object sex;
-                
-
-                JButton clicksource = (JButton) e.getSource();
-                if (clicksource == o_view.retButton)
-                {
-                    playerName = o_view.getplayerName();
-                    o_model.setName(playerName);
-                    
-                    difficulty = o_view.getDifficulty();
-                    o_model.setDifficulty(difficulty);
-                    
-                    sex = o_view.getSex();
-                    o_model.setSex(sex);
-                    
-                   
-                    
-                }
-            }
+    
             
         }
-}
+
 
     
 

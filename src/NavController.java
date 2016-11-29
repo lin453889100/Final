@@ -54,6 +54,7 @@ public class NavController {
         n_view.addInstructionButtonListener(new InstructionButtonListener());
         n_view.addMainButtonListener(new MainButtonListener());        
         n_view.addCreditButtonListener(new CreditButtonListener());
+        o_view.addButtonListener(new addSaveButtonListener());
     }
     class OptionsButtonListener implements ActionListener {            
         public void actionPerformed(ActionEvent e)
@@ -86,6 +87,19 @@ public class NavController {
             n_view.switchToCreditPanel(c_view);
         }
     }
+    
+    class addSaveButtonListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            m_view.getDifficulty().setText("Difficulty: " + String.valueOf(o_view.getDifficulty().getValue()));
+            m_view.getplayerName().setText("PlayerName: " + o_view.getplayerName().getText());
+            m_view.getSex().setText("Sex: " + o_view.getSex().getSelectedItem());
+            o_view.getDifficultyLabel().setText("Difficulty: " + String.valueOf(o_view.getDifficulty().getValue()));
+            o_view.getplayerName().setText("PlayerName: " + o_view.getplayerName().getText());
+            
+        }
+    }
+
     
     //TODO: Add listeners on buttons to switch to other Panels
     

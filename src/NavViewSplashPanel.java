@@ -12,7 +12,7 @@ public class NavViewSplashPanel extends JPanel{
     JLabel information2;
     NavViewSplashPanel()
     {
-            splashButton = new JButton(new ImageIcon("src\\images\\background.jpg"));    
+            splashButton = new JButton(new ImageIcon("src/images/background.jpg"));    
              splashButton.setHorizontalTextPosition(JButton.CENTER);
                 splashButton.setVerticalTextPosition(JButton.TOP);
             add(splashButton);
