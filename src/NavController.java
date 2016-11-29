@@ -54,7 +54,7 @@ public class NavController {
         n_view.addInstructionButtonListener(new InstructionButtonListener());
         n_view.addMainButtonListener(new MainButtonListener());        
         n_view.addCreditButtonListener(new CreditButtonListener());
-        o_view.addButtonListener(new addSaveButtonListener());
+        o_view.addButtonListener(new OptionRetButtonListener());
     }
     class OptionsButtonListener implements ActionListener {            
         public void actionPerformed(ActionEvent e)
@@ -88,18 +88,15 @@ public class NavController {
         }
     }
     
-    class addSaveButtonListener implements ActionListener {
+    class OptionRetButtonListener implements ActionListener {
 
-        public void actionPerformed(ActionEvent e) {
-            m_view.getDifficulty().setText("Difficulty: " + String.valueOf(o_view.getDifficulty().getValue()));
-            m_view.getplayerName().setText("PlayerName: " + o_view.getplayerName().getText());
-            m_view.getSex().setText("Sex: " + o_view.getSex().getSelectedItem());
-            o_view.getDifficultyLabel().setText("Difficulty: " + String.valueOf(o_view.getDifficulty().getValue()));
-            o_view.getplayerName().setText("PlayerName: " + o_view.getplayerName().getText());
+        public void actionPerformed(ActionEvent ae) {
             
+            o_view.getSettingSave().setText("Saved Succesffully!");
+            m_view.getOutput().setText("PlayerName: "+ o_view.getPlayerName().getText()+"   Gender:"+o_view.getSex().getSelectedItem()+"   Difficulty Level: "+o_view.getDifficulty().getValue());
+            n_view.switchToMainPanel(m_view);
         }
     }
-
     
     //TODO: Add listeners on buttons to switch to other Panels
     

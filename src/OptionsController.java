@@ -18,18 +18,16 @@ import java.awt.event.*;
 public class OptionsController {
     private OptionsView o_view;
     private OptionsModel o_model;
-    
+    MainView m_view;
+    NavView n_view;
     OptionsController(OptionsModel o_model, OptionsView o_view)
     {
         this.o_model = o_model;
-        this.o_view = o_view;
-
-        
+        this.o_view = o_view;  
     }
-    
-            
-        }
 
+    
+}
 
     
 

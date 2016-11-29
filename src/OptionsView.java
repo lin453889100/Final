@@ -1,4 +1,5 @@
 
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,128 +18,92 @@ public class OptionsView extends JPanel{
         JLabel EnterDiff;
         JSlider difficulty;
         JComboBox sex;
-        JLabel difficultyLabel;
-        JLabel playerNameLabel;
-        JLabel sexLabel;
         
-        
+        JLabel settingSave;
        
-        
-        OptionsModel o_model;
         MainView m_view;
+        OptionsModel o_model;
         
         OptionsView(OptionsModel o_model)
         {
             this.o_model = o_model;
             
-                   
+            GridLayout grid = new GridLayout(10,17);
+            setLayout(grid);
+
+            playerName = new JTextField("--Update Player Name--");
             
-            playerName = new JTextField("--Enter Player Name--");
+            sex = new JComboBox<Object>();
+            sex.addItem("male");
+            sex.addItem("female");
+            
             difficulty = new JSlider(JSlider.HORIZONTAL, 1,3,1);
             difficulty.setMajorTickSpacing(1);
             difficulty.setPaintLabels(true);
             difficulty.setPaintTicks(true);
 
             EnterDiff = new JLabel("  Enter Difficulty:");
-            
-            sex = new JComboBox<Object>();
-            sex.addItem("male");
-            sex.addItem("female");
 
-            
-            
-            retButton = new JButton("Save");
-            playerNameLabel = new JLabel("Player name is empty");
-            difficultyLabel = new JLabel("Difficulty is not selected yet");
-            sexLabel = new JLabel("Sex is not selected yet");
-            
-            
+            retButton = new JButton("Save and Return");
 
+            settingSave = new JLabel(" Settings haven't been Saved! ");
+                    
             add(playerName);
+            add(sex);
             add(EnterDiff);
             add(difficulty);
             add(retButton);
-            add(sex);
-            add(playerNameLabel);
-            add(difficultyLabel);
-            add(sexLabel);
-            
+            add(settingSave);
+        
         } 
    
-            public void addButtonListener(ActionListener e)
-            {    
-            this.retButton.addActionListener(e);
-            
-            }
-            
-            public JTextField getplayerName()
-            {
-                return playerName;
-            }
-            public void setplayerName(JTextField playername)
-            {
-                this.playerName = playerName;
-            }
-            
-            public JButton getretButton()
-            {
-                return retButton;
-            }
-            public void setretButton(JButton retButton)
-            {
-                this.retButton = retButton;
-            }
-            public JLabel getEnterDiff()
-            {
-                return EnterDiff;
-            }
-            public void setEnterDiff(JLabel EnterDiff)
-            {
-                this.EnterDiff = EnterDiff;
-            }
-            public JSlider getDifficulty()
-            {
-                return difficulty;
-            }
-            public void setDifficulty()
-            {
-                this.difficulty = difficulty;
-            }
-            public JComboBox getSex()
-            {
-                return sex;
-            }
-            public void setSex(JComboBox sex)
-            {
-                this.sex = sex;
-            }
-            
-            public JLabel getsexLabel()
-            {
-                return sexLabel;
-            }
-            public void setsexLabel(JLabel sexLabel)
-            {
-                this.sexLabel = sexLabel;
-            }
-            
-            public JLabel getDifficultyLabel()
-            {
-                return difficultyLabel;
-            }
-            public void setDifficultyLabel(JLabel difficultyLabel)
-            {
-                this.difficultyLabel = difficultyLabel;
-            }
-            
-            public JLabel getplayerNameLabel()
-            {
-                return playerNameLabel;
-            }
-            public void setplayerNameLabel(JLabel playerNameLabel)
-            {
-                this.playerNameLabel = playerNameLabel;
-            }
+    public void addButtonListener(ActionListener bl){    
+    retButton.addActionListener(bl);
+    }
            
-        
+    public void setRetButton(JButton retButton) {
+    this.retButton = retButton;
+    }
+            
+    public JButton getRetButton() {
+    return retButton;
+    }
+
+    public JLabel getSettingSave() {
+        return settingSave;
+    }
+
+    public void setSettingSave(JLabel settingSave) {
+        this.settingSave = settingSave;
+    }
+
+    public JLabel getEnterDiff() {
+        return EnterDiff;
+    }
+
+    public void setEnterDiff(JLabel EnterDiff) {
+        this.EnterDiff = EnterDiff;
+    }
+
+    public JSlider getDifficulty() {
+        return difficulty;
+    }
+
+    
+    public JTextField getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(JTextField playerName) {
+        this.playerName = playerName;
+    }
+
+    public JComboBox getSex() {
+        return sex;
+    }
+
+    public void setSubject(JComboBox sex) {
+        this.sex = sex;
+    }
+
 }

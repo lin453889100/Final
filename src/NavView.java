@@ -1,7 +1,6 @@
-
-
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 
 /**
@@ -62,6 +61,7 @@ public class NavView extends JFrame{
         nVpanel.removeInstruction();
         nVpanel.addCredit(c_view);
     }
+
     
     public void addOptionsButtonListener(ActionListener al) 
     {    
