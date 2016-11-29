@@ -34,7 +34,7 @@ public class OptionsView extends JPanel{
                    
             
             playerName = new JTextField("--Enter Player Name--");
-            difficulty = new JSlider(JSlider.HORIZONTAL, 1,10,5);
+            difficulty = new JSlider(JSlider.HORIZONTAL, 1,3,1);
             difficulty.setMajorTickSpacing(1);
             difficulty.setPaintLabels(true);
             difficulty.setPaintTicks(true);
