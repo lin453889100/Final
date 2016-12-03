@@ -18,6 +18,7 @@ public class OptionsView extends JPanel{
         JLabel EnterDiff;
         JSlider difficulty;
         JComboBox sex;
+        int value;
         
         JLabel settingSave;
        
@@ -87,6 +88,11 @@ public class OptionsView extends JPanel{
 
     public JSlider getDifficulty() {
         return difficulty;
+    }
+    public Object getDifficultyChange() {
+        int value = difficulty.getValue();
+        return value;
+        
     }
 
     
