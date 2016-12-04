@@ -127,7 +127,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     
     public void Background(Graphics g)
     {
-        Image backgound = new ImageIcon().getImage();
+        Image backgound =new ImageIcon("src\\images\\MainViewBackground.jpg").getImage();
         g.drawImage(backgound, 0, 0, panelWidth, panelHeight, this.gamePanel);
     }
     
