@@ -1,8 +1,13 @@
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -118,6 +123,123 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         badFruit.add(bad1);
         badFruit.add(bad2);
         badFruit.add(bad3);
+    }
+    
+    public void Background(Graphics g)
+    {
+        Image backgound = new ImageIcon().getImage();
+        g.drawImage(backgound, 0, 0, panelWidth, panelHeight, this.gamePanel);
+    }
+    
+    public void GoodFruits(Graphics g)
+    {
+        for(int i = 0; i < goodFruits.size(); i++)
+        {
+            goodFruits.get(i).paintComponent(g);
+        }
+    }
+    
+    public void GoodCollision()
+    {
+        for(int i = 0; i < goodFruits.size(); i++)
+        {
+            if(player.intersects(goodFruits.get(i)))
+            {
+                player.increaseScore();
+                score.setText("Your Score: " + player.getScore());
+                goodFruits.remove(i);
+            }
+        }
+    }
+    
+    public void BadFruits(Graphics g)
+    {
+        for(int i = 0; i < badFruits.size(); i++)
+        {
+            badFruits.get(i).paintComponent(g);
+        }
+    }
+    
+    public void BadCollision()
+    {
+        for(int i = 0; i < badFruits.size(); i++)
+        {
+            if(player.intersects(badFruits.get(i)))
+            {
+                player.decrementLives();
+                score.setText("Your Lives: " + player.getScore());
+                goodFruits.remove(i);
+            }
+        }
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        Object j = e.getSource();
+        
+        if(j == gameTimer)
+        {
+            this.repaint();
+            player.setLocation(player.currentX, player.getYCoord());
+            
+            if(player.getLives() == 0)
+            {
+                fruitTimer.stop();
+                gameTimer.stop();
+                
+            }
+        }
+        
+        else if(j == fruitTimer)
+        {
+            goodFruit good1 = new goodFruit(panelWidth,panelWidth,this);
+            badFruit bad1 = new badFruit(panelWidth,panelWidth,this);
+            badFruit bad2 = new badFruit(panelWidth,panelWidth,this);
+            
+            goodFruits.add(good1);
+            badFruits.add(bad1);
+            badFruits.add(bad2);
+            
+            for(int i = 0; i < goodFruits.size(); i++)
+            {
+                goodFruits.get(i).move();
+            }
+            
+            for(int i = 0; i < badFruits.size(); i++)
+            {
+                badFruits.get(i).move();
+            }
+            
+            difficultyLevel();
+        }
+    }
+    
+    @Override
+    public void keyPressed(KeyEvent e)
+    {
+        player.keyPressed(e);
+    }
+    
+    @Override
+    public void keyReleased(KeyEvent e)
+    {
+        player.keyReleased(e);
+    }
+   
+    public Player getPlayer()
+    {
+        return this.player;
+    }
+    
+    public void setInGame()
+    {
+        this.ingame = false;
+    }
+    
+    public boolean getInGame()
+    {
+        return ingame = true;
     }
 
 }
