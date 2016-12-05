@@ -26,8 +26,8 @@ import javax.swing.border.LineBorder;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private Player player;
     private OptionsView difficultyChange;
-    private ArrayList<GoodFruit> goodFruits;
-    private ArrayList<BadFruit> badFruits;
+    private ArrayList<goodFruit> goodFruits;
+    private ArrayList<badFruit> badFruits;
     private final JPanel gamePanel = new JPanel();
     private JLabel score;
     private JLabel lives;
@@ -72,15 +72,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
             this.repaint();
             goodFruit good1 = new goodFruit(panelWidth,panelWidth,this);
             badFruit bad1 = new badFruit(panelWidth,panelWidth,this);
+            goodFruits.add(good1);
+            badFruits.add(bad1);
             
-            for(int i = 0; i < goodFruit.size(); i++)
+            
+            for(int i = 0; i < goodFruits.size(); i++)
             {
-                goodFruit.get(i).move();
+                goodFruits.get(i).move();
             }
             
-            for(int i = 0; i < badFruit.size(); i++)
+            for(int i = 0; i < badFruits.size(); i++)
             {
-                badFruit.get(i).move();
+                badFruits.get(i).move();
             }
         }
         else if(value == 2)
@@ -90,14 +93,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
             badFruit bad1 = new badFruit(panelWidth,panelWidth,this);
             badFruit bad2 = new badFruit(panelWidth,panelWidth,this);
             
-            for(int i = 0; i < goodFruit.size(); i++)
+            goodFruits.add(good1);
+            badFruits.add(bad1);
+            badFruits.add(bad2);
+            
+            for(int i = 0; i < goodFruits.size(); i++)
             {
-                goodFruit.get(i).move();
+                goodFruits.get(i).move();
             }
             
-            for(int i = 0; i < badFruit.size(); i++)
+            for(int i = 0; i < badFruits.size(); i++)
             {
-                badFruit.get(i).move();
+                badFruits.get(i).move();
             }
         }
         else if(value == 3)
@@ -108,21 +115,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
             badFruit bad2 = new badFruit(panelWidth,panelWidth,this);
             badFruit bad3 = new badFruit(panelWidth,panelWidth,this);
             
-            for(int i = 0; i < goodFruit.size(); i++)
+            goodFruits.add(good1);
+            badFruits.add(bad1);
+            badFruits.add(bad2);
+            badFruits.add(bad3);
+            
+            for(int i = 0; i < goodFruits.size(); i++)
             {
-                goodFruit.get(i).move();
+                goodFruits.get(i).move();
             }
             
-            for(int i = 0; i < badFruit.size(); i++)
+            for(int i = 0; i < badFruits.size(); i++)
             {
-                badFruit.get(i).move();
+                badFruits.get(i).move();
             }
         }
         
-        goodFruit.add(good1);
-        badFruit.add(bad1);
-        badFruit.add(bad2);
-        badFruit.add(bad3);
+        
     }
     
     public void Background(Graphics g)
@@ -166,7 +175,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         {
             if(player.intersects(badFruits.get(i)))
             {
-                player.decrementLives();
+                player.decreaseLives();
                 score.setText("Your Lives: " + player.getScore());
                 goodFruits.remove(i);
             }
@@ -181,7 +190,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         if(j == gameTimer)
         {
             this.repaint();
-            player.setLocation(player.currentX, player.getYCoord());
+            player.setLocation(player.getCurrX(), player.getCurrY());
             
             if(player.getLives() == 0)
             {
@@ -240,6 +249,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     public boolean getInGame()
     {
         return ingame = true;
+    }
+    @Override
+    public void keyTyped(KeyEvent event)
+    {  
     }
 
 }
