@@ -1,6 +1,8 @@
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -14,25 +16,31 @@ import javax.swing.ImageIcon;
  *
  * @author Yifeng
  */
-public class badFruit {
-    private GamePanel gamePanel;
-    private final Image badFruitImage;
+public class badFruit extends Rectangle {
     
-    
-    
-    private String BadFruitImagePath="Final\\src\\images\\apple.jpg";
+    GamePanel gamePanel;
+    int x;
+    int y;
+    int speed;
+    int size;
+    Dimension dim;
+    Image badFruitImage;
+
+    String BadFruitImageDirection="Final\\src\\images\\apple.jpg";
       // Picture Link: http://images.clipartlogo.com/files/images/41/418414/apple-food-fruit-apples-bitten-dan-worm-gerh-ger-cartoon-worms_t.jpg
-    
-    
-    public static ArrayList<String> FruitImages = new ArrayList<String>();
   
     
-    public badFruit(int panelHeight, int panelWidth, GamePanel gamePanel)
-            
-    {
-        super (panelHeight, panelWidth, gamePanel);
+    public badFruit(int panelHeight, int panelWidth, GamePanel gamePanel){
+       this.gamePanel = gamePanel;
+       this.dim = new Dimension (panelHeight, panelWidth);
+       this.speed=5;
+       this.size=10;
+       
+       int randomPosition = (int) (panelHeight * Math.random() - 20);
         
-       badFruitImage = new ImageIcon(BadFruitImagePath).getImage();
+       this.setBounds(randomPosition,0,speed,size);
+        
+       badFruitImage = new ImageIcon(BadFruitImageDirection).getImage();
     }
 
     public Image getBadFoodImage()
@@ -40,11 +48,19 @@ public class badFruit {
         return badFruitImage;
     }
     
+    public int getCurrX(){
+        return x;
+    }
+    public int getCurrY(){
+        return y;
+    }
+    public void move(){
+        this.y += this.speed;
+    }
     
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g){
         move();
         
         g.drawImage(badFruitImage,this.x,this.y, 36, 32, gamePanel);
-    
+    }
 }
