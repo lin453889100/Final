@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ import javax.swing.JPanel;
  *
  * @author annmw820
  */
-public class MainView extends JPanel {
-    OptionsView o_view;
+public class MainView extends JPanel implements KeyListener{
+    
     Image background;
     Image player;
     goodFruit gf;
@@ -36,11 +37,9 @@ public class MainView extends JPanel {
     JLabel MissingLabel;
     JLabel LivesLabel;
     JLabel output;
-    
-    Random rand = new Random();
-    int x_player=250;
-    int y_player=440;
-    
+      
+    int playerCurrX=250;
+    int playerCurrY=440;
     
     int Score = 0;
     int Missing = 0;
@@ -57,7 +56,6 @@ public class MainView extends JPanel {
         ScoreLabel = new JLabel("Current Score: 0");
         ScoreLabel.setBounds(30,20,200,15);
         add(ScoreLabel);
-        
         MissingLabel = new JLabel("Total Missing: 0");
 	MissingLabel.setBounds(30,40,200,15); 
         add(MissingLabel);
@@ -68,13 +66,12 @@ public class MainView extends JPanel {
         background =new ImageIcon("src/images/MainViewBackground.jpg").getImage();
         player =new ImageIcon("src/images/player.jpg").getImage();
         
-        addKeyListener(new Navigate());
+        this.addKeyListener(this);
         setFocusable(true);
     
 }
 
-    void notCollision(){
-        
+    public void notCollision(){
         if(gf.getCurrX() > 500){
             Missing =Missing+1; 
             MissingLabel.setText("Total Missing: "+ Missing); 
@@ -82,23 +79,21 @@ public class MainView extends JPanel {
         }
     }
 
-    void detectCollision(){
-	Rectangle playerRect = new Rectangle(x_player,y_player,200,150); 
-	Rectangle gfRect    = gf.getBound();
-        Rectangle bfRect    = bf.getBound();
+    public void Collision(){
+	Rectangle playerNew = new Rectangle(playerCurrX,playerCurrY,200,150); 
+	Rectangle gfNew    = gf.getRect();
+        Rectangle bfNew    = bf.getRect();
         
-	if(gfRect.intersects(playerRect)){
+	if(gfNew.intersects(playerNew)){
 	   Score=Score+1; 
            ScoreLabel.setText("Current Score:"+Score); 
     	   gf.randomPosition();
 	}
-        
-        else if(bfRect.intersects(playerRect)){ 
+        else if(bfNew.intersects(playerNew)){ 
            Lives-=1;
            LivesLabel.setText("Lives: "+Lives);
     	   bf.randomPosition();
 	}
-        
 }
     
     public void paintComponent(Graphics g){
@@ -106,22 +101,21 @@ public class MainView extends JPanel {
 	Graphics2D g2d = (Graphics2D)g;
         g.drawImage(background,0,0,null); 
         
-        gf.fallGoodFruit();
-        bf.fallBadFruit();
+        gf.drop();
+        bf.drop();
 	
 	if(Lives <= 0 || Missing >4){
                 gameStatus = false;
 	    }
  
 	if(gameStatus == true){
-	   
-           gf.fallGoodFruit();
-           bf.fallBadFruit();
+           gf.drop();
+           bf.drop();
            notCollision();
-   	   detectCollision();
+   	   Collision();
            MainView m_view = null;
 
-	   g.drawImage(player, x_player, y_player,200,150,m_view); 
+	   g.drawImage(player,playerCurrX,playerCurrY,200,150,m_view); 
            g.drawImage(bf.getImage(), bf.getCurrX(), bf.getCurrY(),50,50, m_view);
            g.drawImage(gf.getImage(), gf.getCurrX(), gf.getCurrY(),50,50,m_view); 
            
@@ -133,33 +127,30 @@ public class MainView extends JPanel {
             g.drawString("Game Over", 300,200);
             g.drawString("Final Score: "+Score, 200, 300);
             g.drawString("Total Missing: "+ Missing ,200, 400);
-            
         }
-        
 	repaint();	
     }
 
-    public class Navigate extends KeyAdapter {
-        
-        
-        public void keyReleased(KeyEvent k){
-        }
-        public void keyPressed(KeyEvent k){
- 
-		if(k.getKeyCode() == k.VK_LEFT & x_player>10){
-                    
-                     x_player-=10;
-                     repaint();   
-                    
-		}
-		if(k.getKeyCode() == k.VK_RIGHT & x_player<1000){
-	
-                     x_player+=10;
+    @Override
+    public void keyReleased(KeyEvent k){
+    }
     
-		}
+    @Override
+    public void keyTyped(KeyEvent k){
+        
+    }
+    
+    @Override
+    public void keyPressed(KeyEvent k){
+        if(k.getKeyCode() == k.VK_LEFT & playerCurrX<0){
+            playerCurrX-=20;
+            repaint();      
 	}
-    };
-    
+        else if(k.getKeyCode() == k.VK_RIGHT & playerCurrX<700){
+            playerCurrX+=20;
+	}
+    }
+
     public void setOutput(){
         this.output=output;
     }
