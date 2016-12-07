@@ -26,8 +26,10 @@ public class badFruit  {
     int badFruitCurrX= r.nextInt(800);
     int badFruitCurrY = 0;
     
+    int speed;
     
-    public badFruit(){
+    
+    public badFruit(int panelHeight, int panelWidth, MainView m_view){
         
         badFruit =new ImageIcon("src/images/apple.jpg").getImage();
     }
@@ -35,6 +37,8 @@ public class badFruit  {
     public void randomPosition(){
         badFruitCurrX = r.nextInt(800);
         badFruitCurrY= 0;
+        this.speed = 1;
+
     }
     
     
@@ -51,6 +55,11 @@ public class badFruit  {
     
     public Rectangle getRect(){
 	return new Rectangle(getCurrX(),getCurrY(),50,50);
+    }
+    
+    public void move()
+    {
+        this.badFruitCurrY += this.speed;
     }
     
     public void drop(){

@@ -23,9 +23,12 @@ public class goodFruit {
    Random r = new Random();
    int goodFruitCurrX;
    int goodFruitCurrY;
+   
+   int speed;
     
-    public goodFruit(){
+    public goodFruit(int panelHeight, int panelWidth, MainView m_view){
         goodFruit =new ImageIcon("src/images/banana.jpg").getImage();
+        this.speed = 1;
     }
     
     public void randomPosition(){
@@ -42,6 +45,11 @@ public class goodFruit {
     
     public Image getImage(){
         return goodFruit;
+    }
+    
+    public void move()
+    {
+        this.goodFruitCurrY += this.speed;
     }
     
     public Rectangle getRect(){
