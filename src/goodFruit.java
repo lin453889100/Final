@@ -20,42 +20,41 @@ import javax.swing.JPanel;
  */
 public class goodFruit {
    Image goodFruit;
-   Random rand = new Random();
-   int x_goodFruit;
-    int y_goodFruit;
-    
+   Random r = new Random();
+   int goodFruitCurrX;
+   int goodFruitCurrY;
     
     public goodFruit(){
         goodFruit =new ImageIcon("src/images/banana.jpg").getImage();
     }
     
     public void randomPosition(){
-        x_goodFruit = rand.nextInt(800);
-        y_goodFruit= 0;
+        goodFruitCurrX = r.nextInt(800);
+        goodFruitCurrY= 0;
     }
     
     public int getCurrX(){
-        return x_goodFruit ;
+        return goodFruitCurrX ;
     }
     public int getCurrY(){
-        return y_goodFruit;
+        return goodFruitCurrY;
     }
     
     public Image getImage(){
         return goodFruit;
     }
     
-    public Rectangle getBound()
+    public Rectangle getRect()
 	{
 		return new Rectangle(getCurrX(),getCurrY(),50,50);
 	}
     
-    public void fallGoodFruit(){
-	if(y_goodFruit >=600){ 
-		randomPosition();
+    public void drop(){
+	if(goodFruitCurrY >=600){ 
+            randomPosition();
         }
 	else
-		y_goodFruit++; 
+            goodFruitCurrY++; 
 	}
     
     
