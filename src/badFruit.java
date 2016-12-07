@@ -1,10 +1,14 @@
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,51 +20,50 @@ import javax.swing.ImageIcon;
  *
  * @author Yifeng
  */
-public class badFruit extends Rectangle {
+public class badFruit  {
     
-    GamePanel gamePanel;
-    int x;
-    int y;
-    int speed;
-    int size;
-    Dimension dim;
-    Image badFruitImage;
-
-    String BadFruitImageDirection="Final\\src\\images\\apple.jpg";
-      // Picture Link: http://images.clipartlogo.com/files/images/41/418414/apple-food-fruit-apples-bitten-dan-worm-gerh-ger-cartoon-worms_t.jpg
-  
+   Image badFruit;
+   Random rand = new Random();
+   
+    int x_badFruit= rand.nextInt(800);
+    int y_badFruit = 0;
     
-    public badFruit(int panelHeight, int panelWidth, GamePanel gamePanel){
-       this.gamePanel = gamePanel;
-       this.dim = new Dimension (panelHeight, panelWidth);
-       this.speed=5;
-       this.size=10;
-       
-       int randomPosition = (int) (panelHeight * Math.random() - 20);
+    
+    public badFruit(){
         
-       this.setBounds(randomPosition,0,speed,size);
-        
-       badFruitImage = new ImageIcon(BadFruitImageDirection).getImage();
+        badFruit =new ImageIcon("src/images/apple.jpg").getImage();
     }
-
-    public Image getBadFoodImage()
-    {
-        return badFruitImage;
+    
+    public void randomPosition(){
+        x_badFruit = rand.nextInt(800);
+        y_badFruit= 0;
     }
+    
     
     public int getCurrX(){
-        return x;
+        return x_badFruit ;
     }
     public int getCurrY(){
-        return y;
-    }
-    public void move(){
-        this.y += this.speed;
+        return y_badFruit;
     }
     
-    public void paintComponent(Graphics g){
-        move();
-        
-        g.drawImage(badFruitImage,this.x,this.y, 36, 32, gamePanel);
+    public Image getImage(){
+        return badFruit;
     }
+    
+    public Rectangle getBound()
+	{
+		return new Rectangle(getCurrX(),getCurrY(),50,50);
+	}
+    public void fallBadFruit(){
+	if(y_badFruit >=600){ 
+		randomPosition();
+        }
+	else
+		y_badFruit++; 
+	}
+    
+    
+
+    
 }

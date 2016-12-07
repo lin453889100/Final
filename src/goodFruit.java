@@ -1,9 +1,12 @@
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,49 +18,48 @@ import javax.swing.ImageIcon;
  *
  * @author Yifeng
  */
-public class goodFruit extends Rectangle {
-   
-    GamePanel gamePanel;
-    int x;
-    int y;
-    int speed;
-    int size;
-    Dimension dim;
-    Image goodFruitImage;
-    String GoodFruitImageDirection="Final\\src\\images\\banana.jpg"; 
-    // Link to the picture : http://www.yooyoo360.com/photo/2009-1-4/20090114131115526.jpg
+public class goodFruit {
+   Image goodFruit;
+   Random rand = new Random();
+   int x_goodFruit;
+    int y_goodFruit;
     
-    public goodFruit(int panelHeight, int panelWidth, GamePanel gamePanel){
-        
-        this.gamePanel = gamePanel;
-        this.dim = new Dimension (panelHeight, panelWidth);
-        this.speed=5;
-        this.size=10;
-       
-        int randomPosition = (int) (panelHeight * Math.random() - 20);
-        
-        this.setBounds(randomPosition,0,speed,size);
-        goodFruitImage=new ImageIcon(GoodFruitImageDirection).getImage();
+    
+    public goodFruit(){
+        goodFruit =new ImageIcon("src/images/banana.jpg").getImage();
     }
-     
-    public Image getGoodFruitImage(){
-        return goodFruitImage;
+    
+    public void randomPosition(){
+        x_goodFruit = rand.nextInt(800);
+        y_goodFruit= 0;
     }
     
     public int getCurrX(){
-        return x;
+        return x_goodFruit ;
     }
     public int getCurrY(){
-        return y;
+        return y_goodFruit;
     }
-    public void move(){
-        this.y += this.speed;
+    
+    public Image getImage(){
+        return goodFruit;
     }
-
-    public void paintComponent(Graphics g){
-        move();
-        g.drawImage(goodFruitImage,this.x,this.y, 35, 35, gamePanel);
-
-
-}
+    
+    public Rectangle getBound()
+	{
+		return new Rectangle(getCurrX(),getCurrY(),50,50);
+	}
+    
+    public void fallGoodFruit(){
+	if(y_goodFruit >=600){ 
+		randomPosition();
+        }
+	else
+		y_goodFruit++; 
+	}
+    
+    
+    
+    
+   
 }
