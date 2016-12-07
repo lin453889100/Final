@@ -44,13 +44,12 @@ public class goodFruit {
         return goodFruit;
     }
     
-    public Rectangle getRect()
-	{
-		return new Rectangle(getCurrX(),getCurrY(),50,50);
-	}
+    public Rectangle getRect(){
+        return new Rectangle(getCurrX(),getCurrY(),50,50);
+    }
     
     public void drop(){
-	if(goodFruitCurrY >=600){ 
+        if(goodFruitCurrY >=600){ 
             randomPosition();
         }
 	else
