@@ -21,12 +21,10 @@ import javax.swing.JPanel;
  * @author Yifeng
  */
 public class badFruit  {
-    
-   Image badFruit;
-   Random rand = new Random();
-   
-    int x_badFruit= rand.nextInt(800);
-    int y_badFruit = 0;
+    Image badFruit;
+    Random r = new Random();
+    int badFruitCurrX= r.nextInt(800);
+    int badFruitCurrY = 0;
     
     
     public badFruit(){
@@ -35,32 +33,32 @@ public class badFruit  {
     }
     
     public void randomPosition(){
-        x_badFruit = rand.nextInt(800);
-        y_badFruit= 0;
+        badFruitCurrX = r.nextInt(800);
+        badFruitCurrY= 0;
     }
     
     
     public int getCurrX(){
-        return x_badFruit ;
+        return badFruitCurrX ;
     }
     public int getCurrY(){
-        return y_badFruit;
+        return badFruitCurrX;
     }
     
     public Image getImage(){
         return badFruit;
     }
     
-    public Rectangle getBound()
-	{
-		return new Rectangle(getCurrX(),getCurrY(),50,50);
-	}
-    public void fallBadFruit(){
-	if(y_badFruit >=600){ 
-		randomPosition();
+    public Rectangle getRect(){
+	return new Rectangle(getCurrX(),getCurrY(),50,50);
+    }
+    
+    public void drop(){
+	if(badFruitCurrY >=600){ 
+	randomPosition();
         }
 	else
-		y_badFruit++; 
+	badFruitCurrY++; 
 	}
     
     
