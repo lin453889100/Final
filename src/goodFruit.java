@@ -26,7 +26,7 @@ public class goodFruit {
    
    int speed;
     
-    public goodFruit(int panelHeight, int panelWidth, MainView m_view){
+    public goodFruit(int panelHeight, int panelWidth, GameView g_view){
         goodFruit =new ImageIcon("src/images/banana.jpg").getImage();
         this.speed = 1;
     }

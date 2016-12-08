@@ -16,6 +16,7 @@ public class NavViewPanel extends JPanel{
     InstructionView i_view;
     MainView m_view;
     CreditView c_view;
+    GameView g_view;
     
     public NavViewPanel() {
         super();
@@ -67,6 +68,12 @@ public class NavViewPanel extends JPanel{
         revalidate();
         repaint();
     }
+    public void addStart(GameView g_view) {
+        this.g_view = g_view;
+        add(g_view, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
     
     public void removeOptions()
     {
@@ -95,6 +102,12 @@ public class NavViewPanel extends JPanel{
     public void removeSplash()
     {
         remove(splash);
+    }
+    
+    public void removeGame() {
+        if (this.g_view != null) {
+            remove(this.g_view);
+        }
     }
             
 }

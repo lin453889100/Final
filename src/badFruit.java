@@ -29,7 +29,7 @@ public class badFruit  {
     int speed;
     
     
-    public badFruit(int panelHeight, int panelWidth, MainView m_view){
+    public badFruit(int panelHeight, int panelWidth, GameView g_view){
         
         badFruit =new ImageIcon("src/images/apple.jpg").getImage();
     }

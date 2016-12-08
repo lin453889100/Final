@@ -108,7 +108,7 @@ public class OptionsView extends JPanel{
         return sex;
     }
 
-    public void setSubject(JComboBox sex) {
+    public void setSex(JComboBox sex) {
         this.sex = sex;
     }
 
