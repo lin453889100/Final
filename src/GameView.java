@@ -47,8 +47,7 @@ public class GameView extends JPanel implements KeyListener{
     
     private ArrayList<goodFruit> goodFruits;
     private ArrayList<badFruit> badFruits;
-    private final int panelHeight = 500;
-    private final int panelWidth = 700;
+    
 
     boolean gameStatus = true; 
     
@@ -57,8 +56,8 @@ public class GameView extends JPanel implements KeyListener{
         output= new JLabel();
         add(output);
     
-        gf = new goodFruit(panelWidth,panelWidth,this);
-        bf = new badFruit(panelWidth,panelWidth,this); 
+        gf = new goodFruit();
+        bf = new badFruit(); 
         
         ScoreLabel = new JLabel("Current Score: 0");
         ScoreLabel.setBounds(30,20,200,15);
@@ -75,7 +74,6 @@ public class GameView extends JPanel implements KeyListener{
         setFocusable(true);
     
 }
-   
 
     public void Collision(){
 	Rectangle playerNew = new Rectangle(playerCurrX,playerCurrY,200,150); 
@@ -139,7 +137,7 @@ public class GameView extends JPanel implements KeyListener{
     
     @Override
     public void keyPressed(KeyEvent k){
-        if(k.getKeyCode() == k.VK_LEFT & playerCurrX<700){
+        if(k.getKeyCode() == k.VK_LEFT & playerCurrX>0){
             playerCurrX-=20;
             repaint();      
 	}
