@@ -36,7 +36,6 @@ public class GameView extends JPanel implements KeyListener{
     badFruit bf;
     
     JLabel ScoreLabel;
-    JLabel MissingLabel;
     JLabel LivesLabel;
     JLabel output;
       
@@ -44,7 +43,6 @@ public class GameView extends JPanel implements KeyListener{
     int playerCurrY=440;
     
     int Score = 0;
-    int Missing = 0;
     int Lives = 8;
     
     private ArrayList<goodFruit> goodFruits;
@@ -65,9 +63,7 @@ public class GameView extends JPanel implements KeyListener{
         ScoreLabel = new JLabel("Current Score: 0");
         ScoreLabel.setBounds(30,20,200,15);
         add(ScoreLabel);
-        MissingLabel = new JLabel("Total Missing: 0");
-	MissingLabel.setBounds(30,40,200,15); 
-        add(MissingLabel);
+        
 	LivesLabel = new JLabel("Lives: 8");
 	LivesLabel.setBounds(30,60,200,15);
         add(LivesLabel);
@@ -79,16 +75,7 @@ public class GameView extends JPanel implements KeyListener{
         setFocusable(true);
     
 }
-    
-    
-
-    public void notCollision(){
-        if(gf.getCurrX() > 500){
-            Missing =Missing+1; 
-            MissingLabel.setText("Total Missing: "+ Missing); 
-            gf.randomPosition();
-        }
-    }
+   
 
     public void Collision(){
 	Rectangle playerNew = new Rectangle(playerCurrX,playerCurrY,200,150); 
@@ -115,14 +102,13 @@ public class GameView extends JPanel implements KeyListener{
         gf.drop();
         bf.drop();
 	
-	if(Lives <= 0 || Missing >4){
+	if(Lives <= 0 ){
                 gameStatus = false;
 	    }
  
 	if(gameStatus == true){
            gf.drop();
            bf.drop();
-           notCollision();
    	   Collision();
            GameView g_view = null;
 
@@ -137,7 +123,7 @@ public class GameView extends JPanel implements KeyListener{
             g.setFont(f);
             g.drawString("Game Over", 300,200);
             g.drawString("Final Score: "+Score, 200, 300);
-            g.drawString("Total Missing: "+ Missing ,200, 400);
+            
         }
 	repaint();	
     }
