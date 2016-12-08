@@ -25,12 +25,11 @@ public class badFruit {
    Random r = new Random();
    int badFruitCurrX;
    int badFruitCurrY;
-   
-   int speed;
+
     
     public badFruit(int panelHeight, int panelWidth, GameView g_view){
         badFruit =new ImageIcon("src/images/apple.jpg").getImage();
-        this.speed = 1;
+
     }
     
     public void randomPosition(){
@@ -49,10 +48,7 @@ public class badFruit {
         return badFruit;
     }
     
-    public void move()
-    {
-        this.badFruitCurrY += this.speed;
-    }
+
     
     public Rectangle getRect(){
         return new Rectangle(getCurrX(),getCurrY(),50,50);

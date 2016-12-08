@@ -52,7 +52,6 @@ public class GameView extends JPanel implements KeyListener{
     private final int panelHeight = 500;
     private final int panelWidth = 700;
 
-    private OptionsView difficultyChange;
     boolean gameStatus = true; 
     
     public GameView(){
@@ -81,75 +80,7 @@ public class GameView extends JPanel implements KeyListener{
     
 }
     
-    /*public void difficultyLevel()
-    {
-        int value = difficultyChange.getDifficulty().getValue();
-        if(value == 1)
-        {
-            this.repaint();
-            goodFruit good1 = new goodFruit(panelWidth,panelWidth,this);
-            badFruit bad1 = new badFruit(panelWidth,panelWidth,this);
-            goodFruits.add(good1);
-            badFruits.add(bad1);
-            
-            
-            for(int i = 0; i < goodFruits.size(); i++)
-            {
-                goodFruits.get(i).move();
-            }
-            
-            for(int i = 0; i < badFruits.size(); i++)
-            {
-                badFruits.get(i).move();
-            }
-        }
-        else if(value == 2)
-        {
-            this.repaint();
-            goodFruit good1 = new goodFruit(panelWidth,panelWidth,this);
-            badFruit bad1 = new badFruit(panelWidth,panelWidth,this);
-            badFruit bad2 = new badFruit(panelWidth,panelWidth,this);
-            
-            goodFruits.add(good1);
-            badFruits.add(bad1);
-            badFruits.add(bad2);
-            
-            for(int i = 0; i < goodFruits.size(); i++)
-            {
-                goodFruits.get(i).move();
-            }
-            
-            for(int i = 0; i < badFruits.size(); i++)
-            {
-                badFruits.get(i).move();
-            }
-        }
-        else if(value == 3)
-        {
-            this.repaint();
-            goodFruit good1 = new goodFruit(panelWidth,panelWidth,this);
-            badFruit bad1 = new badFruit(panelWidth,panelWidth,this);
-            badFruit bad2 = new badFruit(panelWidth,panelWidth,this);
-            badFruit bad3 = new badFruit(panelWidth,panelWidth,this);
-            
-            goodFruits.add(good1);
-            badFruits.add(bad1);
-            badFruits.add(bad2);
-            badFruits.add(bad3);
-            
-            for(int i = 0; i < goodFruits.size(); i++)
-            {
-                goodFruits.get(i).move();
-            }
-            
-            for(int i = 0; i < badFruits.size(); i++)
-            {
-                badFruits.get(i).move();
-            }
-        }
-        
-        
-    }*/
+    
 
     public void notCollision(){
         if(gf.getCurrX() > 500){
