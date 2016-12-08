@@ -25,7 +25,7 @@ public class goodFruit {
    int goodFruitCurrY;
 
     
-    public goodFruit(int panelHeight, int panelWidth, GameView g_view){
+    public goodFruit(){
         goodFruit =new ImageIcon("src/images/banana.jpg").getImage();
 
     }

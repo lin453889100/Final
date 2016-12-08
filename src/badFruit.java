@@ -27,7 +27,7 @@ public class badFruit {
    int badFruitCurrY;
 
     
-    public badFruit(int panelHeight, int panelWidth, GameView g_view){
+    public badFruit(){
         badFruit =new ImageIcon("src/images/apple.jpg").getImage();
 
     }
