@@ -20,41 +20,33 @@ import javax.swing.JPanel;
  *
  * @author Yifeng
  */
-public class badFruit  {
-    Image badFruit;
-    Random r = new Random();
-    int badFruitCurrX= r.nextInt(800);
-    int badFruitCurrY = 0;
-    
-    int speed;
-    
+public class badFruit {
+   Image badFruit;
+   Random r = new Random();
+   int badFruitCurrX;
+   int badFruitCurrY;
+   
+   int speed;
     
     public badFruit(int panelHeight, int panelWidth, GameView g_view){
-        
         badFruit =new ImageIcon("src/images/apple.jpg").getImage();
+        this.speed = 1;
     }
     
     public void randomPosition(){
         badFruitCurrX = r.nextInt(800);
         badFruitCurrY= 0;
-        this.speed = 1;
-
     }
-    
     
     public int getCurrX(){
         return badFruitCurrX ;
     }
     public int getCurrY(){
-        return badFruitCurrX;
+        return badFruitCurrY;
     }
     
     public Image getImage(){
         return badFruit;
-    }
-    
-    public Rectangle getRect(){
-	return new Rectangle(getCurrX(),getCurrY(),50,50);
     }
     
     public void move()
@@ -62,15 +54,20 @@ public class badFruit  {
         this.badFruitCurrY += this.speed;
     }
     
+    public Rectangle getRect(){
+        return new Rectangle(getCurrX(),getCurrY(),50,50);
+    }
+    
     public void drop(){
-	if(badFruitCurrY >=600){ 
-	randomPosition();
+        if(badFruitCurrY >=600){ 
+            randomPosition();
         }
 	else
-	badFruitCurrY++; 
+            badFruitCurrY++; 
 	}
     
     
-
     
+    
+   
 }

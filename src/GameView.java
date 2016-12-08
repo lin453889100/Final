@@ -81,7 +81,7 @@ public class GameView extends JPanel implements KeyListener{
     
 }
     
-     public void difficultyLevel()
+    /*public void difficultyLevel()
     {
         int value = difficultyChange.getDifficulty().getValue();
         if(value == 1)
@@ -149,7 +149,7 @@ public class GameView extends JPanel implements KeyListener{
         }
         
         
-    }
+    }*/
 
     public void notCollision(){
         if(gf.getCurrX() > 500){
